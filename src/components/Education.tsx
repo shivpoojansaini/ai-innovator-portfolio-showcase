@@ -1,83 +1,55 @@
-
 import React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { GraduationCap, Calendar } from 'lucide-react';
 
 const Education = () => {
-  const education = [
-    {
-      degree: "Master of Science in Information Science",
-      specialization: "Machine Learning Specialization",
-      institution: "The University of Arizona",
-      period: "2024 - 2026",
-      status: "Current",
-      description: "Advanced coursework in machine learning algorithms, AI systems, and data science methodologies."
-    },
-    {
-      degree: "Bachelor of Technology in Electronics & Communication Engineering",
-      institution: "Indian Institute of Information Technology, Surat",
-      period: "2017 - 2021",
-      status: "Completed",
-      description: "Comprehensive education in electronics, communication systems, and signal processing with focus on emerging technologies."
-    }
-  ];
-
   return (
     <section id="education" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Education</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Academic foundation in engineering and advanced AI research
-          </p>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">Education</h2>
+        <p className="text-xl text-gray-600 mb-16">
+          Academic foundation in engineering and advanced AI research
+        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {education.map((edu, index) => (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-purple-600"></div>
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-purple-100 rounded-lg">
-                      <GraduationCap className="h-6 w-6 text-purple-600" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl text-gray-900 leading-tight">
-                        {edu.degree}
-                      </CardTitle>
-                      {edu.specialization && (
-                        <CardDescription className="text-purple-600 font-medium mt-1">
-                          {edu.specialization}
-                        </CardDescription>
-                      )}
-                    </div>
-                  </div>
-                  <div className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    edu.status === 'Current' 
-                      ? 'bg-green-100 text-green-700' 
-                      : 'bg-blue-100 text-blue-700'
-                  }`}>
-                    {edu.status}
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-2 text-gray-600">
-                    <span className="font-semibold">{edu.institution}</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-gray-500">
-                    <Calendar className="h-4 w-4" />
-                    <span className="text-sm">{edu.period}</span>
-                  </div>
-                  <p className="text-gray-700 text-sm leading-relaxed">
-                    {edu.description}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+          {/* MS Degree */}
+          <div className="bg-white rounded-xl shadow-md p-6 border-t-4 border-purple-500 w-full max-w-xl">
+            <div className="flex items-center mb-4">
+              <img
+                src="https://i.postimg.cc/P5TP05vF/download.png"
+                alt="University of Arizona"
+                className="w-12 h-12 object-contain mr-4"
+              />
+              <div className="text-left">
+                <h3 className="text-xl font-semibold">Master of Science in Information Science</h3>
+                <p className="text-purple-600 text-sm">Machine Learning Specialization</p>
+              </div>
+              <span className="ml-auto bg-green-100 text-green-700 text-sm px-3 py-1 rounded-full">Current</span>
+            </div>
+            <p className="text-gray-700 text-sm mb-1 font-medium">The University of Arizona</p>
+            <p className="text-gray-500 text-sm mb-3">📅 2024 – 2026</p>
+            <p className="text-gray-600 text-sm">
+              Advanced coursework in machine learning algorithms, AI systems, and data science methodologies.
+            </p>
+          </div>
+
+          {/* BTech Degree */}
+          <div className="bg-white rounded-xl shadow-md p-6 border-t-4 border-purple-500 w-full max-w-xl">
+            <div className="flex items-center mb-4">
+              <img
+                src="https://i.postimg.cc/ZKk9Fcbm/IIIT-Surat-logo.jpg"
+                alt="IIIT Surat"
+                className="w-12 h-12 object-contain mr-4"
+              />
+              <div className="text-left">
+                <h3 className="text-xl font-semibold">Bachelor of Technology in Electronics & Communication Engineering</h3>
+              </div>
+              <span className="ml-auto bg-blue-100 text-blue-700 text-sm px-3 py-1 rounded-full">Completed</span>
+            </div>
+            <p className="text-gray-700 text-sm mb-1 font-medium">Indian Institute of Information Technology, Surat</p>
+            <p className="text-gray-500 text-sm mb-3">📅 2017 – 2021</p>
+            <p className="text-gray-600 text-sm">
+              Comprehensive education in electronics, communication systems, and signal processing with focus on emerging technologies.
+            </p>
+          </div>
         </div>
       </div>
     </section>

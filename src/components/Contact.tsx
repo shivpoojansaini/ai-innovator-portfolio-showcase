@@ -1,5 +1,5 @@
-
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from 'emailjs-com';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -8,6 +8,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 const Contact = () => {
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,14 +16,35 @@ const Contact = () => {
     message: ''
   });
 
+  // EmailJS credentials
+  const SERVICE_ID = "service_zp58l69";
+  const TEMPLATE_ID = "template_y5u07cu";
+  const PUBLIC_KEY = "7zfB57-6Nzk2tZT9i";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend service
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' });
+
+    if (form.current) {
+      emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+        .then((result) => {
+          console.log(result.text);
+          toast({
+            title: "Message Sent!",
+            description: "Thank you for your message. I'll get back to you soon.",
+          });
+          setFormData({ name: '', email: '', subject: '', message: '' });
+          if (form.current) {
+            form.current.reset(); // Reset the form element itself
+          }
+        }, (error) => {
+          console.log(error.text);
+          toast({
+            title: "Error Sending Message",
+            description: "Something went wrong. Please try again later.",
+            variant: "destructive",
+          });
+        });
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -77,7 +99,7 @@ const Contact = () => {
                     <div>
                       <p className="text-sm font-medium text-gray-500">{info.label}</p>
                       {info.href !== "#" ? (
-                        <a 
+                        <a
                           href={info.href}
                           className="text-lg text-gray-900 hover:text-purple-600 transition-colors"
                         >
@@ -124,7 +146,7 @@ const Contact = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -132,7 +154,7 @@ const Contact = () => {
                     </label>
                     <Input
                       id="name"
-                      name="name"
+                      name="name" // This 'name' attribute is crucial for EmailJS
                       type="text"
                       required
                       value={formData.name}
@@ -146,7 +168,7 @@ const Contact = () => {
                     </label>
                     <Input
                       id="email"
-                      name="email"
+                      name="email" // This 'name' attribute is crucial for EmailJS
                       type="email"
                       required
                       value={formData.email}
@@ -155,14 +177,14 @@ const Contact = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
                     Subject
                   </label>
                   <Input
                     id="subject"
-                    name="subject"
+                    name="subject" // This 'name' attribute is crucial for EmailJS
                     type="text"
                     required
                     value={formData.subject}
@@ -170,14 +192,14 @@ const Contact = () => {
                     placeholder="Project collaboration, consultation, etc."
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                     Message
                   </label>
                   <Textarea
                     id="message"
-                    name="message"
+                    name="message" // This 'name' attribute is crucial for EmailJS
                     required
                     rows={4}
                     value={formData.message}
@@ -185,9 +207,9 @@ const Contact = () => {
                     placeholder="Tell me about your project or how I can help you..."
                   />
                 </div>
-                
-                <Button 
-                  type="submit" 
+
+                <Button
+                  type="submit"
                   className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3"
                 >
                   Send Message
