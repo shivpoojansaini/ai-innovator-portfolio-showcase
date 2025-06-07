@@ -1,5 +1,7 @@
+// src/components/Hero.tsx
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Typewriter } from 'react-simple-typewriter';
 
 const Hero = () => {
   return (
@@ -14,31 +16,54 @@ const Hero = () => {
           {/* Left Content */}
           <div className="text-left">
             <div className="mb-6">
-              <span className="text-white/90 text-lg mb-2 block">Hey, I'm Shivpoojan 👋</span>
-              <h1 className="text-5xl lg:text-6xl font-bold text-white mb-4">
-                <span className="text-purple-200">AI & Generative AI</span>
-                <br />
-                <span className="text-white">Specialist</span>
+              <span className="text-white/90 text-lg mb-2 block tracking-wide">
+                Hey, I’m Shivpoojan 👋
+              </span>
+              <h1 className="text-5xl lg:text-6xl font-extrabold mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-pink-200">
+                AI &amp; Generative AI<br />
+                Specialist
               </h1>
             </div>
 
-            <p className="text-xl text-white/90 mb-8 max-w-lg leading-relaxed">
-              I'm a Senior Research Engineer specializing in AI, Generative AI, NLP, and Computer Vision. 
+            <p className="text-xl text-white/90 mb-8 max-w-lg leading-relaxed tracking-wide">
+              I’m a{' '}
+              <span className="font-semibold text-white">
+                <Typewriter
+                  words={[
+                    'Architecting Smarter AI Systems,',
+                    'Pioneering Generative AI Workflows,',
+                    'Crafting NLP-Driven Insights,',
+                    'Engineering Computer Vision Magic,',
+                    'Bridging Data & Deep Learning,',
+                  ]}
+                  loop
+                  cursor
+                  cursorStyle="🖋️"
+                  typeSpeed={90}
+                  deleteSpeed={60}
+                  delaySpeed={2000}
+                />
+              </span>
+              <br />
               I help build innovative AI solutions that transform businesses.
             </p>
 
             <div className="flex flex-wrap gap-4">
               <Button
                 size="lg"
-                className="bg-white text-purple-700 hover:bg-gray-100 font-semibold px-8 py-3"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-white text-purple-700 hover:bg-gray-100 font-semibold px-8 py-3 tracking-wide"
+                onClick={() =>
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                }
               >
                 Get In Touch
               </Button>
               <Button
                 size="lg"
-                className="bg-white text-purple-700 hover:bg-gray-100 font-semibold px-8 py-3"
-                onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-white text-purple-700 hover:bg-gray-100 font-semibold px-8 py-3 tracking-wide"
+                onClick={() =>
+                  document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })
+                }
               >
                 View Experience
               </Button>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
@@ -6,12 +5,14 @@ import { useState } from 'react';
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Added 'Resume' to navigation items
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
     { name: 'Education', href: '#education' },
+    { name: 'Resume', href: '#resume' },
     { name: 'Contact', href: '#contact' }
   ];
 
